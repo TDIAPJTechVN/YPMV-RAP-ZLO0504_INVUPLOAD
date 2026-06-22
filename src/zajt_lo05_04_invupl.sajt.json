@@ -1,0 +1,19 @@
+{
+  "formatVersion": "1",
+  "header": {
+    "description": "Job Template of Invoice Upload",
+    "originalLanguage": "en",
+    "abapLanguageVersion": "cloudDevelopment"
+  },
+  "generalInformation": {
+    "catalogName": "ZAJCE_LO05_04_INVUPL"
+  },
+  "parameters": {
+    "valueRangesParameters": [
+      {
+        "name": "UUID",
+        "valueRanges": []
+      }
+    ]
+  }
+}

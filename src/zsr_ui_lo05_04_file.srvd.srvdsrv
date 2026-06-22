@@ -1,0 +1,6 @@
+@EndUserText.label: 'Service Definition for Invoice Upload'
+define service ZSR_UI_LO05_04_FILE
+  provider contracts odata_v4_ui {
+  expose ZC_LO05_04_FILE;
+  expose ZC_LO05_04_XLSX;
+}

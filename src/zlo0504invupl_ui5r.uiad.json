@@ -1,0 +1,34 @@
+{
+  "formatVersion": "2",
+  "header": {
+    "description": "An SAP Fiori application.",
+    "originalLanguage": "en",
+    "abapLanguageVersion": "cloudDevelopment"
+  },
+  "generalInformation": {
+    "appType": "ui5",
+    "catalogId": "SAP_TC_UI5_REPO_UIAD",
+    "targetMappingTitle": "Invoice Upload With PO"
+  },
+  "ui5AppDetails": {
+    "appId": "lo0504invupload"
+  },
+  "navigation": {
+    "targetMappingId": "UI5R_D32FC9286A4FEF304C5EB667FCCEFD357DDFEF1C_TM",
+    "semanticObject": "YY1_SO_LO_05_04_INVUPL",
+    "action": "manage",
+    "desktop": true,
+    "tablet": true,
+    "phone": true
+  },
+  "tiles": [
+    {
+      "id": "UI5R_D32FC9286A4FEF304C5EB667FCCEFD357DDFEF1C_AL",
+      "tileType": "static",
+      "isDefault": true,
+      "standard": {
+        "title": "Invoice Upload With PO"
+      }
+    }
+  ]
+}

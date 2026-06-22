@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_DOMA" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <DD01V>
+    <DOMNAME>ZDO_LO05_04_STATUS</DOMNAME>
+    <DDLANGUAGE>E</DDLANGUAGE>
+    <DATATYPE>CHAR</DATATYPE>
+    <LENG>000020</LENG>
+    <OUTPUTLEN>000020</OUTPUTLEN>
+    <LOWERCASE>X</LOWERCASE>
+    <VALEXI>X</VALEXI>
+    <DDTEXT>File Status</DDTEXT>
+    <DOMMASTER>E</DOMMASTER>
+   </DD01V>
+   <DD07V_TAB>
+    <DD07V>
+     <DOMNAME>ZDO_LO05_04_STATUS</DOMNAME>
+     <VALPOS>0001</VALPOS>
+     <DDLANGUAGE>E</DDLANGUAGE>
+     <DOMVALUE_L>Initial</DOMVALUE_L>
+     <DDTEXT>Data has not been uploaded yet</DDTEXT>
+    </DD07V>
+    <DD07V>
+     <DOMNAME>ZDO_LO05_04_STATUS</DOMNAME>
+     <VALPOS>0002</VALPOS>
+     <DDLANGUAGE>E</DDLANGUAGE>
+     <DOMVALUE_L>Invalid</DOMVALUE_L>
+     <DDTEXT>Data upload failed during validation</DDTEXT>
+    </DD07V>
+    <DD07V>
+     <DOMNAME>ZDO_LO05_04_STATUS</DOMNAME>
+     <VALPOS>0003</VALPOS>
+     <DDLANGUAGE>E</DDLANGUAGE>
+     <DOMVALUE_L>Valid</DOMVALUE_L>
+     <DDTEXT>Data was uploaded correctly</DDTEXT>
+    </DD07V>
+    <DD07V>
+     <DOMNAME>ZDO_LO05_04_STATUS</DOMNAME>
+     <VALPOS>0004</VALPOS>
+     <DDLANGUAGE>E</DDLANGUAGE>
+     <DOMVALUE_L>Processing</DOMVALUE_L>
+     <DDTEXT>Data upload is in processing</DDTEXT>
+    </DD07V>
+    <DD07V>
+     <DOMNAME>ZDO_LO05_04_STATUS</DOMNAME>
+     <VALPOS>0005</VALPOS>
+     <DDLANGUAGE>E</DDLANGUAGE>
+     <DOMVALUE_L>Parked</DOMVALUE_L>
+     <DDTEXT>Data upload has been processed (Parked)</DDTEXT>
+    </DD07V>
+    <DD07V>
+     <DOMNAME>ZDO_LO05_04_STATUS</DOMNAME>
+     <VALPOS>0006</VALPOS>
+     <DDLANGUAGE>E</DDLANGUAGE>
+     <DOMVALUE_L>Processed</DOMVALUE_L>
+     <DDTEXT>Data upload has been processed (Posted)</DDTEXT>
+    </DD07V>
+   </DD07V_TAB>
+  </asx:values>
+ </asx:abap>
+</abapGit>

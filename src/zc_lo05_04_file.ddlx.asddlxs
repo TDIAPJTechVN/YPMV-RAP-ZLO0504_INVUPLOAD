@@ -1,0 +1,85 @@
+@Metadata.layer: #CORE
+@UI.headerInfo: {
+    typeName: 'Invoice Upload With PO',
+    typeNamePlural: 'Invoice Upload With PO'
+}
+annotate entity ZC_LO05_04_FILE with
+{
+  @UI.facet: [
+  { id: 'idEndUser',    purpose: #HEADER,       position: 10,   type: #DATAPOINT_REFERENCE,     targetQualifier: 'tqEndUser'
+  },
+  { id: 'idChgAt',      purpose: #HEADER,       position: 20,   type: #DATAPOINT_REFERENCE,     targetQualifier: 'tqChgAt'
+  },
+  { id: 'idStatus',     purpose: #HEADER,       position: 30,   type: #DATAPOINT_REFERENCE,     targetQualifier: 'tqStatus'
+  },
+  { id: 'idFile',       purpose: #STANDARD,     position: 60,   type: #IDENTIFICATION_REFERENCE,    label: 'File Upload'
+  },
+  { id: 'idData',       purpose: #STANDARD,     position: 70,   type: #LINEITEM_REFERENCE,          label: 'Excel Data',    targetElement: '_Item'
+  } ]
+
+  @UI.identification: [{ type: #FOR_ACTION, dataAction: 'uploadExcelData', label: 'Upload Data' },
+                       { type: #FOR_ACTION, dataAction: 'parkInvoice', label: 'Park' },
+                       { type: #FOR_ACTION, dataAction: 'postInvoice', label: 'Post' }]
+
+  @UI.lineItem: [{ position: 10, label: 'Created By' }]
+  @UI.dataPoint: { qualifier: 'tqEndUser', title: 'Created By' }
+  @Consumption.valueHelpDefinition: [{ entity: { name: 'I_BusinessUserVH', element: 'PersonFullName' } }]
+  @UI.selectionField: [{ position: 40 }]
+  CreatedByName;
+
+  @UI.lineItem: [{ position: 20, label: 'Last Changed At' }]
+  @UI.dataPoint: { qualifier: 'tqChgAt', title: 'Last Changed At' }
+  @UI.selectionField: [{ position: 30 }]
+  @Search.defaultSearchElement: true
+  @Consumption.filter: { selectionType: #INTERVAL, multipleSelections: false }
+  LastChangedAt;
+
+  @UI.lineItem: [{ position: 30, label: 'File Status' }]
+  @UI.dataPoint: { qualifier: 'tqStatus', title: 'File Status' }
+  @Consumption.valueHelpDefinition: [{
+      entity: {
+      name: 'ZVH_LO05_04_STATUS',
+      element: 'Status'
+      } }]
+  @UI.selectionField: [{ position: 10 }]
+  @Search.defaultSearchElement: true
+  Status;
+
+  @UI.dataPoint: { qualifier: 'tqAttachment', title: 'Choose file' }
+  @UI.lineItem: [{ position: 40, label: 'Attachment'}]
+  @UI.identification: [{ position: 10, label:'Upload File here' }]
+  Attachment;
+
+  @UI.hidden: true
+  IsInvgoods;
+  @UI.hidden: true
+  IsInvserv;
+  @UI.hidden: true
+  IsSubdecre;
+
+  @Consumption.valueHelpDefinition: [{ entity:{name: 'ZVH_LO05_04_SCENARIO', element: 'Scenario' }}]
+  @UI.identification: [{ position: 20, label: 'Scenario' }]
+  @UI.lineItem: [{ position: 50, label: 'Scenario'}]
+  @UI.selectionField: [{ position: 20 }]
+  @Search.defaultSearchElement: true
+  Scenario;
+
+  @Consumption.filter: { selectionType: #INTERVAL, multipleSelections: false }
+  @UI.lineItem: [{ position: 60, label: 'Created At'}]
+  CreatedAt;
+
+  // hidden part
+  @UI.hidden: true
+  Filename;
+  @UI.hidden: true
+  Mimetype;
+  @UI.hidden: true
+  CreatedBy;
+  @UI.hidden: true
+  LastChangedBy;
+  @UI.hidden: true
+  LocalLastChangedAt;
+  /* Associations */
+  @UI.hidden: true
+  _Item;
+}

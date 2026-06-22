@@ -1,0 +1,31 @@
+projection;
+strict ( 2 );
+extensible;
+use draft;
+use side effects;
+
+define behavior for ZC_LO05_04_FILE alias header
+extensible
+use etag
+{
+  use create;
+  use update;
+  use delete;
+  use function GetDefaultsForCreate;
+  use action uploadExcelData;
+  use action parkInvoice;
+  use action postInvoice;
+
+  use action Activate;
+  use action Discard;
+  use action Edit;
+  use action Resume;
+  use action Prepare;
+
+  use association _Item { with draft; }
+}
+
+define behavior for ZC_LO05_04_XLSX alias item
+{
+  use association _Header { with draft; }
+}

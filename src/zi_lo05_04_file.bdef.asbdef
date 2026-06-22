@@ -1,0 +1,132 @@
+managed implementation in class zcl_bp_i_lo05_04_file unique;
+strict ( 2 );
+with draft;
+extensible;
+
+define behavior for ZI_LO05_04_FILE alias header
+persistent table ztb_lo05_04_file
+extensible
+draft table ztb_lo05_04_fild
+with additional save
+etag master LocalLastChangedAt
+lock master total etag LastChangedAt
+authorization master ( instance, global )
+{
+  create { default function GetDefaultsForCreate; } //( authorization : global )
+  update ( precheck );
+  delete ( features : instance );
+
+  field ( readonly, numbering : managed ) Uuid;
+  field ( features : instance ) MimeType, Filename, Attachment, Scenario;
+  association _Item { create; with draft; }
+
+  // Logic to read excel data into into internal table and save to the child entity
+  action ( features : instance ) uploadExcelData result [1] $self;
+  action ( features : instance ) parkInvoice result [1] $self;
+  action ( features : instance ) postInvoice result [1] $self;
+
+  determination fields on modify { field Filename; }
+
+  side effects
+  {
+    field Attachment affects field Status;
+    action uploadExcelData affects $self, messages;
+    action parkInvoice affects $self, messages;
+    action postInvoice affects $self, messages; }
+
+  draft action Activate optimized;
+  draft action Discard;
+  draft action ( features : instance ) Edit;
+  draft action Resume;
+  draft determine action Prepare;
+  mapping for ztb_lo05_04_file corresponding extensible
+    {
+      Uuid                = uuid;
+      Filename            = filename;
+      Status              = status;
+      Attachment          = attachment;
+      Mimetype            = mimetype;
+      IsInvgoods          = is_invgoods;
+      IsInvserv           = is_invserv;
+      IsSubdecre          = is_subdecre;
+      Scenario            = scenario;
+      ScenarioDescription = scenario_description;
+      CreatedBy           = created_by;
+      CreatedAt           = created_at;
+      CreatedByName       = created_by_name;
+      LastChangedBy       = last_changed_by;
+      LastChangedAt       = last_changed_at;
+      LocalLastChangedAt  = local_last_changed_at;
+    }
+}
+
+define behavior for ZI_LO05_04_XLSX alias item
+persistent table ztb_lo05_04_xlsx
+extensible
+draft table ztb_lo05_04_xlsd
+etag master LocalLastChangedAt
+lock dependent by _Header
+authorization dependent by _Header
+{
+  update;
+  delete;
+  field ( readonly, numbering : managed ) LineId;
+  field ( readonly ) Uuid, LineNumber;
+
+  association _Header { with draft; }
+  mapping for ztb_lo05_04_xlsx corresponding extensible
+    {
+      Uuid                          = uuid;
+      LineId                        = line_id;
+      LineNumber                    = line_no;
+      CompanyCode                   = companycode;
+      AccountingDocumentType        = accountingdocumenttype;
+      DocumentDate                  = documentdate;
+      PostingDate                   = postingdate;
+      SupplierInvoiceIDByInvcgParty = supplierinvoiceidbyinvcgparty;
+      InvoicingParty                = invoicingparty;
+      ReconciliationAccount         = reconciliationaccount;
+      Directquotedexchangerate      = directquotedexchangerate;
+      DocumentCurrency              = documentcurrency;
+      InvoiceGrossAmount            = invoicegrossamount;
+      UnplannedDeliveryCost         = unplanneddeliverycost;
+      DocumentHeaderText            = documentheadertext;
+      AssignmentReference           = assignmentreference;
+      PaymentTerms                  = paymentterms;
+      DueCalculationBaseDate        = duecalculationbasedate;
+      SupplierPostingLineItemText   = supplierpostinglineitemtext;
+      SupplierInvoiceItem           = supplierinvoiceitem;
+      PurchaseOrder                 = purchaseorder;
+      PurchaseOrderItem             = purchaseorderitem;
+      Plant                         = plant;
+      IsSubsequentDebitCredit       = issubsequentdebitcredit;
+      TaxCode                       = taxcode;
+      SupplierInvoiceItemAmount     = supplierinvoiceitemamount;
+      PurchaseOrderUnit             = purchaseorderunit;
+      QuantityInPurchaseOrderUnit   = quantityinpurchaseorderunit;
+      OrdinalNumber                 = ordinalnumber;
+      WBSElement                    = wbselement;
+      FixedAsset                    = fixedasset;
+      GLAccount                     = glaccount;
+      FunctionalArea                = functionalarea;
+      CostCenter                    = costcenter;
+      SupplierInvoice               = supplierinvoice;
+      SupplierInvoiceFiscalYear     = supplierinvoicefiscalyear;
+      LineStatus                    = line_status;
+      LineStatusCriticality         = line_status_criticality;
+      DebitCreditCode               = debitcreditcode;
+      DebitCreditCodeGL             = debitcreditcodegl;
+      SupplierInvoiceItemAmountGL   = supplierinvoiceitemamountgl;
+      TaxCodeGL                     = taxcodegl;
+      ProfitCenter                  = profitcenter;
+      TaxBaseAmountInTransCrcy      = taxbaseamountintranscrcy;
+      Error                         = error;
+      ErrorMessage                  = error_message;
+      LastChangedAt                 = last_changed_at;
+      CreatedBy                     = created_by;
+      CreatedAt                     = created_at;
+      LastChangedBy                 = last_changed_by;
+      LocalLastChangedAt            = local_last_changed_at;
+    }
+
+}
